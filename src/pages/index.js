@@ -1,5 +1,6 @@
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
+import Card from '../scripts/Card.js';
+import FormValidator from '../scripts/FormValidator.js';
+import './index.css'
 
 const ESC_KEYCODE = 27;
 // Константы
