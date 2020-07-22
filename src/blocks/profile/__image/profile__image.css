@@ -8,6 +8,7 @@
   /*Ковер тут симпатичнее контейна*/
   background-position: center;
   margin: 0 29px 0 0;
+  background-image: url('../../../images/avatar.jpg');
   /*Макет очень кривоват, как считать этот отступ я хз. Проявите тут лояльность пока что*/
 }
 
