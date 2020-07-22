@@ -2,7 +2,7 @@ import './index.css'
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import { ESC_KEYCODE, initialCards } from '../utils/constants.js';
-import { isEscEvent, openModalWindow } from '../utils/utils.js';
+import { isEscEvent, openModalWindow, closeModalWindow } from '../utils/utils.js';
 
 // Константы
 
@@ -51,20 +51,21 @@ const defaultFormConfig = {
 //   document.addEventListener('keyup', handleEscUp);
 // };
 
-const closeModalWindow = (modalWindow) => {
-  modalWindow.classList.remove('popup_is-opened');
-  document.removeEventListener('keyup', handleEscUp);
-};
+// const closeModalWindow = (modalWindow) => {
+//   modalWindow.classList.remove('popup_is-opened');
+//   document.removeEventListener('keyup', handleEscUp);
+// };
+
+// const handleEscUp = (evt) => {
+//   evt.preventDefault();
+//   isEscEvent(evt, closeModalWindow);
+// };
 
 const renderCard = (data, wrap) => {
   const card = new Card(data, cardSelector);
   wrap.prepend(card.getView());
 };
 
-const handleEscUp = (evt) => {
-  evt.preventDefault();
-  isEscEvent(evt, closeModalWindow);
-};
 
 const formSubmitHandler = (evt) => {
   evt.preventDefault();
