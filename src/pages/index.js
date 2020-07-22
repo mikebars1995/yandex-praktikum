@@ -1,36 +1,11 @@
+import './index.css'
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
-import './index.css'
+import { ESC_KEYCODE, initialCards } from '../utils/constants.js';
+import { isEscEvent, openModalWindow } from '../utils/utils.js';
 
-const ESC_KEYCODE = 27;
 // Константы
 
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
 // Врапперы
 const placesWrap = document.querySelector('.places__list');
@@ -64,17 +39,17 @@ const defaultFormConfig = {
   errorClass: 'popup__error_visible'
 };
 
-const isEscEvent = (evt, action) => {
-  const activePopup = document.querySelector('.popup_is-opened');
-  if (evt.which === ESC_KEYCODE) {
-    action(activePopup);
-  }
-};
+// const isEscEvent = (evt, action) => {
+//   const activePopup = document.querySelector('.popup_is-opened');
+//   if (evt.which === ESC_KEYCODE) {
+//     action(activePopup);
+//   }
+// };
 
-const openModalWindow = (modalWindow) => {
-  modalWindow.classList.add('popup_is-opened');
-  document.addEventListener('keyup', handleEscUp);
-};
+// const openModalWindow = (modalWindow) => {
+//   modalWindow.classList.add('popup_is-opened');
+//   document.addEventListener('keyup', handleEscUp);
+// };
 
 const closeModalWindow = (modalWindow) => {
   modalWindow.classList.remove('popup_is-opened');
