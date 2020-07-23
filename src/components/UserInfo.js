@@ -1,5 +1,3 @@
-
-
 class UserInfo {
   constructor({profileTitleSelector, profileDescriptionSelector}) {
     this._title = document.querySelector(profileTitleSelector)
