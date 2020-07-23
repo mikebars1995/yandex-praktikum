@@ -2,11 +2,12 @@ import './index.css'
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import { initialCards, placesWrap, editFormModalWindow, cardFormModalWindow,
-  imageModalWindow, cardSelector, placesListSelector, defaultFormConfig
+  imageModalWindow, cardSelector, placesListSelector, defaultFormConfig,
+  popupWithImageSelector
 } from '../utils/constants.js';
 import { openModalWindow, closeModalWindow } from '../utils/utils.js';
 import Section from '../components/Section';
-
+import PopupWithImage from '../components/PopupWithImage';
 // Константы
 
 
@@ -66,10 +67,18 @@ const cardLinkInputValue = cardFormModalWindow.querySelector('.popup__input_type
 //   evt.preventDefault();
 //   isEscEvent(evt, closeModalWindow);
 // };
+const popupWithImage = new PopupWithImage(popupWithImageSelector)
+popupWithImage.setEventListeners()
+
 const cardsList = new Section({
   items: initialCards,
   renderer: (item) => {
-    const card = new Card(item, cardSelector)
+    const card = new Card(
+      item, 
+      cardSelector,
+      () => {
+        popupWithImage.open(item.link, item.name)
+      })
     cardsList.addItem(card.getView())
   }
 }, placesListSelector)

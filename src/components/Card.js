@@ -1,20 +1,10 @@
-import { handleEscUp } from "../utils/utils";
-
-
-const imageModalWindow = document.querySelector('.popup_type_image');
-const imageElement = imageModalWindow.querySelector('.popup__image');
-const imageCaption = imageModalWindow.querySelector('.popup__caption');
-
-
-// Эти функции и переменные -- дубли из index.js. Они нарушают DRY, но в следующем спринте студенты удалят этот код.
-// Как "Можно лучше" посоветуйте вынести эти функции и переменные в модуль utils.js и импортировать их в класс Card.
-
 class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this._text = data.name;
     this._link = data.link;
 
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick
   }
 
   _getTemplate() {
@@ -35,7 +25,7 @@ class Card {
       .addEventListener('click', () => this._handleDeleteCard());
 
     this._element.querySelector('.card__image')
-      .addEventListener('click', () => this._handlePreviewPicture());
+      .addEventListener('click', () => this._handleCardClick());
   }
 
   _handleLikeIcon() {
@@ -48,19 +38,6 @@ class Card {
 
     // Посоветовать занулять элемент
     this._element = null;
-  }
-
-  _handlePreviewPicture() {
-    // Студенты изучат способы описания взаимодействия между классами только в следующем спринте.
-    // Эту зависимость студенты будут передавать как хендлер в конструктор класса.
-    // Поэтому на данный момент они дублируют код из index.js в Card.js (Объявление переменных, функции)
-
-    imageElement.src = this._link;
-    imageElement.alt = `Изображение ${this._link}`;
-    imageCaption.textContent = this._text;
-
-    imageModalWindow.classList.add('popup_is-opened');
-    document.addEventListener('keyup', handleEscUp);
   }
 
   getView() {

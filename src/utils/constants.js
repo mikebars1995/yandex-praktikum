@@ -46,3 +46,5 @@ export const defaultFormConfig = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
 };
+
+export const popupWithImageSelector = '.popup_type_image'
