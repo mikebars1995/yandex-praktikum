@@ -1,5 +1,3 @@
-import { closeModalWindow, openModalWindow } from "../utils/utils";
-
 class Popup {
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);

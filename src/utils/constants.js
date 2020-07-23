@@ -47,4 +47,6 @@ export const defaultFormConfig = {
   errorClass: 'popup__error_visible'
 };
 
+export const editPopupWithFormSelector = '.popup_type_edit'
 export const popupWithImageSelector = '.popup_type_image'
+export const cardPopupWithFormSelector = '.popup_type_new-card'

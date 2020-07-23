@@ -2,12 +2,13 @@ import './index.css'
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import { initialCards, placesWrap, editFormModalWindow, cardFormModalWindow,
-  imageModalWindow, cardSelector, placesListSelector, defaultFormConfig,
-  popupWithImageSelector
+  editPopupWithFormSelector, cardSelector, placesListSelector, defaultFormConfig,
+  popupWithImageSelector,
+  cardPopupWithFormSelector
 } from '../utils/constants.js';
-import { openModalWindow, closeModalWindow } from '../utils/utils.js';
 import Section from '../components/Section';
 import PopupWithImage from '../components/PopupWithImage';
+import PopupWithForm from '../components/PopupWithForm';
 // Константы
 
 
@@ -70,6 +71,29 @@ const cardLinkInputValue = cardFormModalWindow.querySelector('.popup__input_type
 const popupWithImage = new PopupWithImage(popupWithImageSelector)
 popupWithImage.setEventListeners()
 
+const editPopupWithForm = new PopupWithForm(editPopupWithFormSelector, (editInfo) => {
+  profileTitle.textContent = editInfo.name;
+  profileDescription.textContent = editInfo.description;
+  editPopupWithForm.close()
+} )
+
+editPopupWithForm.setEventListeners()
+
+const cardPopupWithForm = new PopupWithForm(cardPopupWithFormSelector, (item) => {
+  const card = new Card(
+    item, 
+    cardSelector,
+    () => {
+      popupWithImage.open(item.link, item.name)
+    })
+
+  cardsList.addItem(card.getView())
+  cardPopupWithForm.close()
+})
+
+cardPopupWithForm.setEventListeners()
+
+
 const cardsList = new Section({
   items: initialCards,
   renderer: (item) => {
@@ -83,63 +107,22 @@ const cardsList = new Section({
   }
 }, placesListSelector)
 
-cardsList.renderItems()
-
-// ==== можно лучше)
-const renderCard = (data, wrap) => {
-  const card = new Card(data, cardSelector);
-  wrap.prepend(card.getView());
-};
-
-
-const formSubmitHandler = (evt) => {
-  evt.preventDefault();
-  profileTitle.textContent = titleInputValue.value;
-  profileDescription.textContent = descriptionInputValue.value;
-  closeModalWindow(editFormModalWindow);
-};
-
-const cardFormSubmitHandler = (evt) => {
-  evt.preventDefault();
-  renderCard({
-    name: cardNameInputValue.value,
-    link: cardLinkInputValue.value
-  }, placesWrap);
-  closeModalWindow(cardFormModalWindow);
-};
-
 // EventListeners
-editFormModalWindow.addEventListener('submit', formSubmitHandler);
-cardFormModalWindow.addEventListener('submit', cardFormSubmitHandler);
 
 openEditFormButton.addEventListener('click', () => {
   titleInputValue.value = profileTitle.textContent;
   descriptionInputValue.value = profileDescription.textContent;
-  openModalWindow(editFormModalWindow);
+  editPopupWithForm.open()
 });
 
 openCardFormButton.addEventListener('click', () => {
-  openModalWindow(cardFormModalWindow);
+  cardPopupWithForm.open()
 });
 
-editFormModalWindow.addEventListener('click', (evt) => {
-  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')) {
-    closeModalWindow(editFormModalWindow);
-  }
-});
-cardFormModalWindow.addEventListener('click', (evt) => {
-  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')) {
-    closeModalWindow(cardFormModalWindow);
-  }
-});
-imageModalWindow.addEventListener('click', (evt) => {
-  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')) {
-    closeModalWindow(imageModalWindow);
-  }
-});
 
 // Инициализация
 
+cardsList.renderItems()
 
 const editFormValidator = new FormValidator(defaultFormConfig, editFormModalWindow);
 const cardFormValidator = new FormValidator(defaultFormConfig, cardFormModalWindow);
