@@ -29,10 +29,8 @@ export const initialCards = [
 
 // Врапперы
 
-export const placesWrap = document.querySelector('.places__list');
 export const editFormModalWindow = document.querySelector('.popup_type_edit');
 export const cardFormModalWindow = document.querySelector('.popup_type_new-card');
-export const imageModalWindow = document.querySelector('.popup_type_image');
 
 // Селекторы
 
@@ -51,7 +49,14 @@ export const defaultFormConfig = {
 export const editPopupWithFormSelector = '.popup_type_edit'
 export const popupWithImageSelector = '.popup_type_image'
 export const cardPopupWithFormSelector = '.popup_type_new-card'
+export const profileTitleSelector = '.profile__title'
+export const profileDescriptionSelector = '.profile__description'
+
 
 // Кнопки и прочие дом узлы
 export const openEditFormButton = document.querySelector('.profile__edit-button');
 export const openCardFormButton = document.querySelector('.profile__add-button');
+
+// Данные форм и элементы форм
+export const titleInputValue = editFormModalWindow.querySelector('.popup__input_type_name');
+export const descriptionInputValue = editFormModalWindow.querySelector('.popup__input_type_description');
