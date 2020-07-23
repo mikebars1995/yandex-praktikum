@@ -1,17 +1,21 @@
 import './index.css'
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
-import { ESC_KEYCODE, initialCards } from '../utils/constants.js';
-import { isEscEvent, openModalWindow, closeModalWindow } from '../utils/utils.js';
+import { initialCards, placesWrap, editFormModalWindow, cardFormModalWindow,
+  imageModalWindow, cardSelector, placesListSelector, defaultFormConfig
+} from '../utils/constants.js';
+import { openModalWindow, closeModalWindow } from '../utils/utils.js';
+import Section from '../components/Section';
 
 // Константы
 
 
 // Врапперы
-const placesWrap = document.querySelector('.places__list');
-const editFormModalWindow = document.querySelector('.popup_type_edit');
-const cardFormModalWindow = document.querySelector('.popup_type_new-card');
-const imageModalWindow = document.querySelector('.popup_type_image');
+
+// const placesWrap = document.querySelector('.places__list');
+// const editFormModalWindow = document.querySelector('.popup_type_edit');
+// const cardFormModalWindow = document.querySelector('.popup_type_new-card');
+// const imageModalWindow = document.querySelector('.popup_type_image');
 // С submit ребята еще плохо работают.
 
 // Кнопки и прочие дом узлы
@@ -29,15 +33,17 @@ const cardNameInputValue = cardFormModalWindow.querySelector('.popup__input_type
 const cardLinkInputValue = cardFormModalWindow.querySelector('.popup__input_type_url');
 // решение на минималках. Конечно, студент может корректно обобрать велью инпутов в форме.
 
-const cardSelector = '.card-template';
-const defaultFormConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-};
+// const cardSelector = '.card-template';
+// const placesListSelector = '.places__list'
+
+// const defaultFormConfig = {
+//   formSelector: '.popup__form',
+//   inputSelector: '.popup__input',
+//   submitButtonSelector: '.popup__button',
+//   inactiveButtonClass: 'popup__button_disabled',
+//   inputErrorClass: 'popup__input_type_error',
+//   errorClass: 'popup__error_visible'
+// };
 
 // const isEscEvent = (evt, action) => {
 //   const activePopup = document.querySelector('.popup_is-opened');
@@ -60,7 +66,17 @@ const defaultFormConfig = {
 //   evt.preventDefault();
 //   isEscEvent(evt, closeModalWindow);
 // };
+const cardsList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const card = new Card(item, cardSelector)
+    cardsList.addItem(card.getView())
+  }
+}, placesListSelector)
 
+cardsList.renderItems()
+
+// ==== можно лучше)
 const renderCard = (data, wrap) => {
   const card = new Card(data, cardSelector);
   wrap.prepend(card.getView());
@@ -114,9 +130,7 @@ imageModalWindow.addEventListener('click', (evt) => {
 });
 
 // Инициализация
-initialCards.forEach((data) => {
-  renderCard(data, placesWrap)
-});
+
 
 const editFormValidator = new FormValidator(defaultFormConfig, editFormModalWindow);
 const cardFormValidator = new FormValidator(defaultFormConfig, cardFormModalWindow);

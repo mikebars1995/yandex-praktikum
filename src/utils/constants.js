@@ -26,3 +26,23 @@ export const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+
+// Врапперы
+
+export const placesWrap = document.querySelector('.places__list');
+export const editFormModalWindow = document.querySelector('.popup_type_edit');
+export const cardFormModalWindow = document.querySelector('.popup_type_new-card');
+export const imageModalWindow = document.querySelector('.popup_type_image');
+
+// Селекторы
+
+export const cardSelector = '.card-template';
+export const placesListSelector = '.places__list'
+export const defaultFormConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
