@@ -38,6 +38,7 @@ export const imageModalWindow = document.querySelector('.popup_type_image');
 
 export const cardSelector = '.card-template';
 export const placesListSelector = '.places__list'
+
 export const defaultFormConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -50,3 +51,7 @@ export const defaultFormConfig = {
 export const editPopupWithFormSelector = '.popup_type_edit'
 export const popupWithImageSelector = '.popup_type_image'
 export const cardPopupWithFormSelector = '.popup_type_new-card'
+
+// Кнопки и прочие дом узлы
+export const openEditFormButton = document.querySelector('.profile__edit-button');
+export const openCardFormButton = document.querySelector('.profile__add-button');

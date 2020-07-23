@@ -1,15 +1,14 @@
 import './index.css'
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
-import { initialCards, placesWrap, editFormModalWindow, cardFormModalWindow,
-  editPopupWithFormSelector, cardSelector, placesListSelector, defaultFormConfig,
-  popupWithImageSelector,
-  cardPopupWithFormSelector
-} from '../utils/constants.js';
 import Section from '../components/Section';
 import PopupWithImage from '../components/PopupWithImage';
 import PopupWithForm from '../components/PopupWithForm';
-// Константы
+import { initialCards, editFormModalWindow, cardFormModalWindow,
+  editPopupWithFormSelector, cardSelector, placesListSelector, defaultFormConfig,
+  popupWithImageSelector, cardPopupWithFormSelector, openEditFormButton, openCardFormButton,
+
+} from '../utils/constants.js';
 
 
 // Врапперы
@@ -21,8 +20,8 @@ import PopupWithForm from '../components/PopupWithForm';
 // С submit ребята еще плохо работают.
 
 // Кнопки и прочие дом узлы
-const openEditFormButton = document.querySelector('.profile__edit-button');
-const openCardFormButton = document.querySelector('.profile__add-button');
+// const openEditFormButton = document.querySelector('.profile__edit-button');
+// const openCardFormButton = document.querySelector('.profile__add-button');
 
 // DOM узлы профиля
 const profileTitle = document.querySelector('.profile__title');
@@ -31,8 +30,8 @@ const profileDescription = document.querySelector('.profile__description');
 // Данные форм и элементы форм
 const titleInputValue = editFormModalWindow.querySelector('.popup__input_type_name');
 const descriptionInputValue = editFormModalWindow.querySelector('.popup__input_type_description');
-const cardNameInputValue = cardFormModalWindow.querySelector('.popup__input_type_card-name');
-const cardLinkInputValue = cardFormModalWindow.querySelector('.popup__input_type_url');
+// const cardNameInputValue = cardFormModalWindow.querySelector('.popup__input_type_card-name');
+// const cardLinkInputValue = cardFormModalWindow.querySelector('.popup__input_type_url');
 // решение на минималках. Конечно, студент может корректно обобрать велью инпутов в форме.
 
 // const cardSelector = '.card-template';
@@ -83,9 +82,8 @@ const cardPopupWithForm = new PopupWithForm(cardPopupWithFormSelector, (item) =>
   const card = new Card(
     item, 
     cardSelector,
-    () => {
-      popupWithImage.open(item.link, item.name)
-    })
+    () => popupWithImage.open(item.link, item.name) 
+  )
 
   cardsList.addItem(card.getView())
   cardPopupWithForm.close()
@@ -100,9 +98,8 @@ const cardsList = new Section({
     const card = new Card(
       item, 
       cardSelector,
-      () => {
-        popupWithImage.open(item.link, item.name)
-      })
+      () => popupWithImage.open(item.link, item.name)
+    )
     cardsList.addItem(card.getView())
   }
 }, placesListSelector)
