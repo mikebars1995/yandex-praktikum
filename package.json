@@ -4,7 +4,7 @@
   "description": "Demo test for reviewers",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf public && webpack",
+    "build": "rm -rf dist && webpack",
     "dev": "webpack-dev-server --open --watch",
     "deploy": "gh-pages -d dist"
   },
