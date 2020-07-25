@@ -16,7 +16,8 @@ class Popup {
 
   _handleEscClose(evt) {
     evt.preventDefault();
-    if (evt.which === 27) {
+    const ESC_KEYCODE = 27
+    if (evt.which === ESC_KEYCODE) {
       this.close();
     }
   };

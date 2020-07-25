@@ -22,7 +22,7 @@ const editPopupWithForm = new PopupWithForm(editPopupWithFormSelector, (editInfo
 })
 editPopupWithForm.setEventListeners()
 
-const cardPopupWithForm = new PopupWithForm(cardPopupWithFormSelector, (item) => {
+const addCard = (item) => {
   const card = new Card(
     item, 
     cardSelector,
@@ -31,21 +31,16 @@ const cardPopupWithForm = new PopupWithForm(cardPopupWithFormSelector, (item) =>
 
   cardsList.addItem(card.getView())
   cardPopupWithForm.close()
-})
+}
+
+const cardPopupWithForm = new PopupWithForm(cardPopupWithFormSelector, addCard)
 cardPopupWithForm.setEventListeners()
 
 const userInfo = new UserInfo({profileTitleSelector, profileDescriptionSelector})
 
 const cardsList = new Section({
   items: initialCards,
-  renderer: (item) => {
-    const card = new Card(
-      item, 
-      cardSelector,
-      () => popupWithImage.open(item.link, item.name)
-    )
-    cardsList.addItem(card.getView())
-  }
+  renderer: addCard
 }, placesListSelector)
 
 // EventListeners
