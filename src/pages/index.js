@@ -5,8 +5,7 @@ import Section from '../components/Section';
 import PopupWithImage from '../components/PopupWithImage';
 import PopupWithForm from '../components/PopupWithForm';
 import UserInfo from '../components/UserInfo';
-import { initialCards, editFormModalWindow, cardFormModalWindow,
-  editPopupWithFormSelector, cardSelector, placesListSelector, defaultFormConfig,
+import { initialCards, editPopupWithFormSelector, cardSelector, placesListSelector, defaultFormConfig,
   popupWithImageSelector, cardPopupWithFormSelector, openEditFormButton, openCardFormButton, 
   profileTitleSelector, profileDescriptionSelector, titleInputValue, descriptionInputValue
 } from '../utils/constants.js';
@@ -66,8 +65,8 @@ openCardFormButton.addEventListener('click', () => {
 
 cardsList.renderItems()
 
-const editFormValidator = new FormValidator(defaultFormConfig, editFormModalWindow);
-const cardFormValidator = new FormValidator(defaultFormConfig, cardFormModalWindow);
+const editFormValidator = new FormValidator(defaultFormConfig, editPopupWithForm.getPopup());
+const cardFormValidator = new FormValidator(defaultFormConfig, cardPopupWithForm.getPopup());
 
 editFormValidator.enableValidation();
 cardFormValidator.enableValidation();

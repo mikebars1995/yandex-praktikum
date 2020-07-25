@@ -1,5 +1,3 @@
-export const ESC_KEYCODE = 27;
-
 export const initialCards = [
   {
     name: 'Архыз',

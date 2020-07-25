@@ -29,6 +29,9 @@ class Popup {
     });
   }
 
+  getPopup() {
+    return this._popup
+  }
 }
 
 export default Popup;
