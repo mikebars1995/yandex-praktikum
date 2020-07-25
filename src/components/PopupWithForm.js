@@ -10,13 +10,13 @@ class PopupWithForm extends Popup {
 
   _getInputValues() {
     const {name, description, link} = this._form.elements
-    const placeName = this._form.elements['place-name'] && this._form.elements['place-name'].value
+    const placeName = this._form.elements['place-name']
     
     return {
       name: name && name.value, 
       description: description && description.value, 
       link: link && link.value, 
-      placeName
+      placeName: placeName && placeName.value
     }
   }
 
